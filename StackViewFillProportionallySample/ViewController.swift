@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var fillEquallyStackView: UIStackView!
+    @IBOutlet weak var fillPropotionallyStackView: UIStackView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,6 +23,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func didTapChangeWidthButton(_ sender: UIButton) {
+        (fillEquallyStackView.arrangedSubviews + fillPropotionallyStackView.arrangedSubviews).flatMap { $0 as? CustomView }.forEach { view in
+            let width: Int = Int(arc4random_uniform(100))
+            view.intrinsicContentWidth = width
+        }
+    }
 }
-
